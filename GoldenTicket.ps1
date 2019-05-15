@@ -3,7 +3,7 @@ param($action = "AllTheThings",[switch]$debug)
 
 $name = "Golden Ticket"
 $version = "1.0"
-$lastmodified = "05/05/2019"
+$lastmodified = "05/15/2019"
 
 
 function GetItems
@@ -43,8 +43,17 @@ function Operate($oneItem)
     #Import-Module ActiveDirectory
     #Set-ADComputer -Identity $oneItem -server MYDC -Enabled:$false
 
-    #
+    #Send an email
     #Send-MailMessage
+
+    #Copy a file
+    #Copy-Item -Path c:\temp\someMSI.msi -Destination \\$oneItem\c$\temp
+
+    #Run a script
+    #psexec $oneItem -u USER -p PASSWORD \\SERVER\FIXTHINGSCRIPT.cmd
+
+    #Wrap your stuff in an executable 7Z and run it on that box over there
+    #psexec \\$oneitem -c LOCALBINARY.exe
 }
 
 
