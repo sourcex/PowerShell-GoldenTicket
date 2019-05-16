@@ -11,7 +11,7 @@ function GetItems
     #Get all the items we want to operate on
 
     #Just an array
-    $items = "192.168.1.2", "192.168.1.7", "TACO-COMPUTER"
+    $items = "192.168.1.1", "192.168.1.7", "TACO-COMPUTER", "10.11.1.1", "10.6.1.1"
 
     #Import from a CSV
     #$items = Import-CSV -Path .\input.csv -Header
@@ -32,6 +32,13 @@ function Operate($oneItem)
     #Operate on one item
     Write-Host "Operating on item: " $oneItem
 
+
+    #Better than Ping
+    $result = Test-Connection $item -Count 1
+    if($result)
+    {
+        Write-Output $item | Out-File -NoClobber ReachableComputers.txt
+    }
 
     #Reboot it
     #shutdown -r -t 0 /f /m $oneItem
